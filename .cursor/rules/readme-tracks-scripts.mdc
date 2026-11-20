@@ -1,0 +1,13 @@
+---
+description: Keep README.md in step with setup-lab.py and cleanup-lab.py
+globs: "{setup-lab.py,cleanup-lab.py,lab_scope.py,README.md}"
+alwaysApply: false
+---
+
+# README stays with the scripts
+
+When a change in `setup-lab.py`, `cleanup-lab.py`, or `lab_scope.py` alters what a person runs, is asked, sees printed, or has deleted, update `README.md` in the same change.
+
+Update the section that describes that behavior: prerequisites, the run prompts, what the script does, the finished output, running it again, or cleanup. Leave the README alone when the change does not affect those steps.
+
+The README describes the scripts as they are. Do not document a step the script does not perform.

@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.setup-lab-state.json
+.setup-lab-credentials
+authentik/
+cloudflared/
+traefik/
