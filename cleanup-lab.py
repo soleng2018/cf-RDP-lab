@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import os
+import pwd
 import shutil
 import socket
 import subprocess
@@ -26,7 +27,19 @@ LABS = Path(__file__).resolve().parent
 STATE_PATH = LABS / ".setup-lab-state.json"
 CRED_PATH = LABS / ".setup-lab-credentials"
 TOKEN_PATH = LABS / "traefik" / "secrets" / "cf_api.secret"
-CLIENTS = Path(os.environ.get("DOCKER_CLIENTS_DIR", str(Path.home() / "docker-clients")))
+
+
+def operator_home() -> Path:
+    sudo_user = os.environ.get("SUDO_USER", "").strip()
+    if sudo_user:
+        try:
+            return Path(pwd.getpwnam(sudo_user).pw_dir)
+        except KeyError:
+            pass
+    return Path.home()
+
+
+CLIENTS = Path(os.environ.get("DOCKER_CLIENTS_DIR", str(operator_home() / "docker-clients")))
 PARAMS = CLIENTS / "parameters.txt"
 CF = "https://api.cloudflare.com/client/v4"
 OWNED_CONTAINERS = (

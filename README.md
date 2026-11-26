@@ -125,6 +125,6 @@ If the desktop URL stops opening, or a VM loses its USB dongle, run `./setup-lab
 python3 cleanup-lab.py
 ```
 
-It reads the zone and API token saved by `setup-lab.py`. You do not pass them again. A Windows installer already on disk is copied to `docker-clients/cache` and reused for every Windows VM on the next setup. The installed Windows disk is still deleted.
+It reads the zone and API token saved by `setup-lab.py`. You do not pass them again. It reads `docker-clients` from your home directory, including when the command is started with sudo. A Windows installer already on disk is copied to `docker-clients/cache` and reused for every Windows VM on the next setup. The installed Windows disk is still deleted.
 
 Then run `./setup-lab` again and answer the prompts.
